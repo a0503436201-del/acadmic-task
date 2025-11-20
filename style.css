@@ -1,0 +1,268 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    padding: 20px;
+    direction: rtl; /* יישור לימין */
+    text-align: right;
+}
+
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    margin: 0;
+}
+
+/* כפתור מעבר מצבים */
+#toggle-mode-btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+#toggle-mode-btn:hover {
+    background-color: #218838;
+}
+
+/* NEW: כפתור הוספת מטלה במצב צפייה */
+#add-task-btn {
+    font-size: 24px;
+    padding: 5px 15px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 50%;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    line-height: 1;
+    height: 40px;
+    width: 40px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+}
+#add-task-btn:hover {
+    background-color: #218838;
+}
+
+/* פס סטטוס כללי */
+#status-bar-container {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #e9ecef;
+    border-radius: 8px;
+}
+#status-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #adb5bd;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 5px;
+}
+#completed-bar {
+    height: 100%;
+    width: 0%; /* משתנה על ידי JS */
+    background-color: #28a745;
+    transition: width 0.5s;
+}
+#status-bar-text {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #007bff;
+}
+
+/* NEW: פס התקדמות מקצוע */
+.subject-progress-display {
+    background-color: #e9ecef;
+    padding: 10px;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    border-radius: 6px;
+    font-weight: bold;
+    border-right: 4px solid #007bff;
+    color: #007bff;
+}
+.subject-progress-bar {
+    width: 100%;
+    height: 10px;
+    background-color: #adb5bd;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 5px;
+}
+.subject-progress-fill {
+    height: 100%;
+    background-color: #17a2b8; /* טורקיז */
+    transition: width 0.5s;
+}
+
+/* רשימת המטלות במצב צפייה */
+#tasks-list-view, #tasks-list-edit {
+    list-style: none;
+    padding: 0;
+}
+
+#tasks-list-view li {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+/* עיצוב מטלה שבוצעה */
+.task-done {
+    background-color: #d4edda !important;
+    text-decoration: line-through;
+    opacity: 0.7;
+    border-left: 5px solid #28a745;
+}
+
+/* צבע אזהרה למועד קרוב (עד יומיים) */
+.due-soon {
+    border-right: 5px solid #ffc107; /* צהוב */
+    background-color: #fff3cd;
+}
+
+/* צבע אזהרה למטלה שפג תוקפה */
+.overdue {
+    border-right: 5px solid #dc3545; /* אדום */
+    background-color: #f8d7da;
+}
+
+.task-info {
+    flex-grow: 1;
+}
+.task-due-date {
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+/* טופס עריכה */
+#edit-mode form label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+#edit-mode form input[type="text"],
+#edit-mode form input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#edit-mode form button {
+    padding: 10px 15px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* רשימת מטלות במצב עריכה */
+#tasks-list-edit li {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.edit-actions button {
+    margin-right: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+}
+.edit-btn {
+    background-color: #ffc107;
+    color: #333;
+}
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+}
+hr {
+    border: 0;
+    height: 1px;
+    background-color: #ccc;
+    margin: 20px 0;
+}
+/* ... קוד CSS קודם ... */
+
+/* NEW: קלט התקדמות במצב צפייה */
+.progress-input-view {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 3px 5px;
+    width: 60px; /* צר יותר להתאמה */
+    text-align: center;
+    margin-right: 5px;
+    box-sizing: border-box;
+}
+
+.subject-progress-display {
+    background-color: #e9ecef;
+    padding: 10px;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    border-radius: 6px;
+    font-weight: bold;
+    border-right: 4px solid #007bff;
+    color: #007bff;
+    display: flex; /* כדי ליישר את הכותרת ואת הקלט */
+    justify-content: space-between;
+    align-items: center;
+}
+
+.progress-header {
+    display: flex;
+    align-items: center;
+}
+
+.subject-progress-bar-container {
+    width: 100%;
+    margin-top: 5px;
+}
+.subject-progress-bar {
+    width: 100%;
+    height: 10px;
+    background-color: #adb5bd;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.subject-progress-fill {
+    height: 100%;
+    background-color: #17a2b8; /* טורקיז */
+    transition: width 0.5s;
+}
+
+/* ... המשך קוד CSS קודם ... */

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מנהל מטלות אקדמיות</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>🗓️ מנהל מטלות אקדמיות</h1>
+        <button id="toggle-mode-btn">מעבר למצב עריכה</button>
+    </header>
+
+    <div id="status-bar-container">
+        <div id="status-bar-text"></div>
+        <div id="status-bar">
+            <div id="completed-bar"></div>
+        </div>
+    </div>
+
+    <section id="view-mode">
+        <h2>המטלות שלי: <button id="add-task-btn" title="הוספת מטלה חדשה">+</button></h2>
+        <ul id="tasks-list-view">
+            </ul>
+    </section>
+
+    <section id="edit-mode" style="display:none;">
+        <h2>📝 הוספת ועריכת מטלה</h2>
+        <form id="task-form">
+            <input type="hidden" id="task-id">
+            <label for="subject">מקצוע/קורס:</label>
+            <input type="text" id="subject" required>
+
+            <label for="task-name">שם המטלה:</label>
+            <input type="text" id="task-name" required>
+
+            <label for="due-date">תאריך הגשה:</label>
+            <input type="date" id="due-date" required>
+
+            <label>
+                <input type="checkbox" id="is-done-edit">
+                המטלה בוצעה
+            </label>
+
+            <button type="submit" id="save-task-btn">שמור מטלה</button>
+            <button type="button" id="cancel-edit-btn" style="display:none;">בטל עריכה</button>
+        </form>
+
+        <hr>
+
+        <h2>📊 עדכון סטטוס מקצועות</h2>
+        <form id="subject-progress-form">
+            <label for="progress-subject">שם מקצוע:</label>
+            <input type="text" id="progress-subject" list="subject-list" required>
+            <datalist id="subject-list"></datalist> <label for="progress-value">אחוז התקדמות (0-100) או חלק (חצי, שליש, 1/3):</label>
+            <input type="text" id="progress-value" placeholder="לדוגמה: 50, חצי, 1/3" required>
+
+            <button type="submit">עדכן התקדמות מקצוע</button>
+            <div id="progress-message" style="margin-top: 10px;"></div>
+        </form>
+
+        <h3>רשימת מטלות לעריכה:</h3>
+        <ul id="tasks-list-edit">
+             </ul>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
